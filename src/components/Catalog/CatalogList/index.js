@@ -13,11 +13,14 @@ const StyledCatalogList = styled.ul`
   gap: 60px 60px;
 `;
 
-const CatalogList = ({ catalog }) => (
+const CatalogList = ({ catalog, setSelectedItem }) => (
   <StyledCatalogList>
     {catalog.map(item => (
       <li key={item.id}>
-        <CatalogItem data={item} />
+        <CatalogItem
+          data={item}
+          setSelectedItem={setSelectedItem}
+        />
       </li>
     ))}
   </StyledCatalogList>
