@@ -19,29 +19,35 @@ const StyledCatalog = styled.main`
       margin-bottom: 0;
     }
   }
-  
-  h2 {
-    margin: 0;
-    margin-bottom: 50px;
-    
-    font-size: 36px;
-    line-height: 36px;
-    color: #333333;  
-  }
 `;
 
-const Catalog = () => (
+const SectionTitle = styled.h2`
+  margin: 0;
+  margin-bottom: 50px;
+  
+  font-size: 36px;
+  line-height: 36px;
+  color: #333333;  
+`;
+
+const Catalog = ({ setSelectedItem }) => (
   <StyledCatalog className="container">
     <Banner />
 
     <section>
-      <h2>Пиццы</h2>
-      <CatalogList catalog={database.pizzas} />
+      <SectionTitle>Пиццы</SectionTitle>
+      <CatalogList
+        catalog={database.pizzas}
+        setSelectedItem={setSelectedItem}
+      />
     </section>
 
     <section>
-      <h2>Закуски и напитки</h2>
-      <CatalogList catalog={database.other} />
+      <SectionTitle>Закуски и напитки</SectionTitle>
+      <CatalogList
+        catalog={database.other}
+        setSelectedItem={setSelectedItem}
+      />
     </section>
   </StyledCatalog>
 );
