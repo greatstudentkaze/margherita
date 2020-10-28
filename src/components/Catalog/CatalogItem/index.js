@@ -52,13 +52,17 @@ const StyledCatalogItem = styled.article`
   }
 `;
 
-const CatalogItem = ({ data: { name, img, price } }) => (
+const CatalogItem = ({ data, setSelectedItem }) => (
   <StyledCatalogItem>
-    <h3>{name}</h3>
-    <img src={img} alt={name} />
+    <h3>{data.name}</h3>
+    <img src={data.img} alt={data.name} />
     <p>
-      <b>{price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</b>
-      <Button text="Выбрать" type="button" />
+      <b>{data.price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</b>
+      <Button
+        type="button"
+        text="Выбрать"
+        handleClick={() => setSelectedItem(data)}
+      />
     </p>
   </StyledCatalogItem>
 );
