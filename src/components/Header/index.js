@@ -69,10 +69,10 @@ const LoginButton = styled.button`
   
   &:hover,
   &:focus {
-    color: #ef9f67;
+    color: #fa9e39;
     
     & svg {
-      fill: #ef9f67;
+      fill: #fa9e39;
     }
   }
   
