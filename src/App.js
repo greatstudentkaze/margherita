@@ -5,15 +5,17 @@ import './css/fonts.css';
 import GlobalStyle from './components/styled/GlobalStyle';
 import Header from './components/Header';
 import Catalog from './components/Catalog';
+import Modal from './components/Catalog/Modal';
 
-function App() {
+const App = () => {
+  const [selectedItem, setSelectedItem] = React.useState(null);
+
   return (
     <>
       <GlobalStyle />
-      <div className="App">
-          <Header />
-          <Catalog />
-      </div>
+      <Header />
+      <Catalog setSelectedItem={setSelectedItem} />
+      <Modal selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
     </>
   );
 }
