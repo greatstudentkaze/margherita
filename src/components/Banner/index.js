@@ -33,7 +33,7 @@ const StyledBanner = styled.section`
     position: relative;
     z-index: 2;
   
-    max-width: 50%;
+    max-width: 570px;
     margin: 0;
     margin-top: auto;
     margin-left: auto;
