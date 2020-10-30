@@ -66,13 +66,16 @@ const RemoveButton = styled.button`
   }
 `;
 
-const OrderListItem = () => (
+const OrderListItem = ({ order }) => (
   <StyledOrderListItem>
     <Wrapper>
-      Цыпленок барбекю
-      <Number>3 шт</Number>
+      {order.name}
+      <Number>1 шт</Number>
     </Wrapper>
-    <Price>999 RUB.</Price>
+    <Price>
+      {order.price
+        .toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}
+    </Price>
     <RemoveButton />
   </StyledOrderListItem>
 );
