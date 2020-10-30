@@ -19,7 +19,7 @@ const App = () => {
       <Header />
       <Cart />
       <Catalog {...selectedItem} />
-      <Modal {...selectedItem} />
+      {selectedItem.selectedItem && <Modal {...selectedItem} />}
     </>
   );
 }

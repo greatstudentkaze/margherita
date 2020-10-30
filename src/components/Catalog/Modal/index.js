@@ -119,8 +119,6 @@ const Price = styled.p`
 
 const Modal = ({ selectedItem, setSelectedItem }) => {
 
-  if (!selectedItem) return null;
-
   const closeModal = evt => {
     if (evt.target.id !== 'overlay') return;
 
