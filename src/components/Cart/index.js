@@ -83,16 +83,24 @@ const CartTotal = styled.div`
   }
 `;
 
-const Cart = () => {
+const EmptyList = styled.p`
+  margin: 15px 0;
+  text-align: center;
+`;
+
+const Cart = ({ orders }) => {
 
   return (
-    <StyledCart tabindex="0">
+    <StyledCart>
       <h2>Корзина</h2>
       <Content>
-        <OrderList>
-          <OrderListItem />
-          <OrderListItem />
-        </OrderList>
+          {
+            orders.length ?
+            <OrderList>
+              {orders.map(order => <OrderListItem key={order.id} order={order} />)}
+            </OrderList>
+            : <EmptyList>Корзина пока пуста</EmptyList>
+          }
         <CartTotal>
           <p>Сумма заказа: <b>5555 RUB.</b></p>
           <Button type="button" text="Оформить заказ" />
