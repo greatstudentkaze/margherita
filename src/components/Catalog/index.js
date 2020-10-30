@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Banner from '../Banner';
+import Banner from './Banner';
 import CatalogList from './CatalogList';
 
 import database from './database';
