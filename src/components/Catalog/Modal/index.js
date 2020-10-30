@@ -117,16 +117,27 @@ const Price = styled.p`
   }
 `;
 
-const Modal = ({ selectedItem, setSelectedItem }) => {
+const Modal = ({ selectedItem, setSelectedItem, orders, setOrders }) => {
+  const { name, img, price, category } = selectedItem;
+  const order = {...selectedItem};
+
+  const hideOverlay = overlay => {
+    overlay.style.animationName = 'hide';
+    setTimeout(() => setSelectedItem(null), 250);
+  };
 
   const closeModal = evt => {
     if (evt.target.id !== 'overlay') return;
 
-    evt.target.style.animationName = 'hide';
-    setTimeout(() => setSelectedItem(null), 250);
+    hideOverlay(evt.target);
   };
 
-  const { name, img, price, category } = selectedItem;
+  const addToCart = evt => {
+    setOrders([...orders, order]);
+
+    const overlay = evt.target.closest('#overlay');
+    hideOverlay(overlay);
+  };
 
   return (
     <Overlay id="overlay" onClick={closeModal}>
@@ -139,7 +150,7 @@ const Modal = ({ selectedItem, setSelectedItem }) => {
           <Price>
             Стоимость: <span>{price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</span>
           </Price>
-          <Button text="Добавить в корзину" type="button" />
+          <Button handleClick={addToCart} text="Добавить в корзину" type="button" />
         </Content>
       </ModalBlock>
     </Overlay>
