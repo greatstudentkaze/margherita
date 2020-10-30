@@ -8,16 +8,18 @@ import Catalog from './components/Catalog';
 import Cart from './components/Cart';
 import Modal from './components/Catalog/Modal';
 
+import useSelectedItem from './components/useSelectedItem';
+
 const App = () => {
-  const [selectedItem, setSelectedItem] = React.useState(null);
+  const selectedItem = useSelectedItem();
 
   return (
     <>
       <GlobalStyle />
       <Header />
       <Cart />
-      <Catalog setSelectedItem={setSelectedItem} />
-      <Modal selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
+      <Catalog {...selectedItem} />
+      <Modal {...selectedItem} />
     </>
   );
 }
