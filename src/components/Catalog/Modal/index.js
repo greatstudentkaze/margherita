@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Button from '../../Button';
 
@@ -66,13 +66,13 @@ const Image = styled.p`
       transform: scale(1.05);
     }
     
-    &.pizza {
+    ${props => props.category === 'pizza' && css`
       transform: rotate(15deg);
       
       &:hover {
         transform: rotate(0) scale(1.05);
       }
-    }
+    `}
   }
 `;
 
@@ -142,8 +142,8 @@ const Modal = ({ selectedItem, setSelectedItem, orders, setOrders }) => {
   return (
     <Overlay id="overlay" onClick={closeModal}>
       <ModalBlock>
-        <Image>
-          <img className={category === 'pizza' ? category : ''} src={img} alt={name}/>
+        <Image category={category}>
+          <img src={img} alt={name}/>
         </Image>
         <Content>
           <h2>{name}</h2>
