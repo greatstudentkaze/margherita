@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Button from '../../Button';
+import { formatPrice } from '../../utils';
 
 const StyledCatalogItem = styled.article`
   position: relative;
@@ -57,7 +58,7 @@ const CatalogItem = ({ data, setSelectedItem }) => (
     <h3>{data.name}</h3>
     <img src={data.img} alt={data.name} />
     <p>
-      <b>{data.price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</b>
+      <b>{formatPrice(data.price)}</b>
       <Button
         type="button"
         text="Выбрать"
