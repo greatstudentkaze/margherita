@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import OrderListItem from './OrderListItem';
 import Button from '../Button';
 
+import { getTotalPrice, formatPrice } from '../utils';
+
 const StyledCart = styled.section`
   position: fixed;
   top: 0;
@@ -89,6 +91,8 @@ const EmptyList = styled.p`
 `;
 
 const Cart = ({ orders }) => {
+  const totalPrice = orders.reduce((totalPrice, order) =>
+    totalPrice + getTotalPrice(order), 0);
 
   return (
     <StyledCart>
@@ -102,7 +106,7 @@ const Cart = ({ orders }) => {
             : <EmptyList>Корзина пока пуста</EmptyList>
           }
         <CartTotal>
-          <p>Сумма заказа: <b>5555 RUB.</b></p>
+          <p>Сумма заказа: <b>{formatPrice(totalPrice)}</b></p>
           <Button type="button" text="Оформить заказ" />
         </CartTotal>
       </Content>
