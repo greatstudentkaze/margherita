@@ -2,6 +2,10 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 import Button from '../Button';
+import ItemQuantity from './ItemQuantity';
+
+import useQuantity from '../Hooks/useQuantity';
+import { getTotalPrice, formatPrice } from '../utils';
 
 const Overlay = styled.div`
   position: fixed;
@@ -118,8 +122,9 @@ const Price = styled.p`
 `;
 
 const Modal = ({ selectedItem, setSelectedItem, orders, setOrders }) => {
-  const { name, img, price, category } = selectedItem;
-  const order = {...selectedItem};
+  const quantityCounter = useQuantity();
+  const { name, img, category } = selectedItem;
+  const order = {...selectedItem, quantity: quantityCounter.quantity};
 
   const hideOverlay = overlay => {
     overlay.style.animationName = 'hide';
@@ -147,8 +152,9 @@ const Modal = ({ selectedItem, setSelectedItem, orders, setOrders }) => {
         </Image>
         <Content>
           <h2>{name}</h2>
+          <ItemQuantity {...quantityCounter}  />
           <Price>
-            Стоимость: <span>{price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</span>
+            Стоимость: <span>{formatPrice(getTotalPrice(order))}</span>
           </Price>
           <Button handleClick={addToCart} text="Добавить в корзину" type="button" />
         </Content>
