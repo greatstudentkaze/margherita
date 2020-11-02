@@ -51,44 +51,64 @@ const database = {
 	],
 	other: [
 		{
-			name: 'Coka',
-			img: 'img/catalog/soda.png',
+			name: 'Ланчбокс с крыльями барбекю',
+			img: 'img/catalog/lunchbox_with_bbq_wings.jpeg',
 			id: 1,
-			price: 50,
-			choices: ['Coca-cola', 'Fanta', 'Mirinda', 'Sprite'],
+			price: 290,
 		},
 		{
-			name: 'Чайкофф',
-			img: 'img/catalog/tea.png',
+			name: 'Картофельные оладьи, 8 шт',
+			img: 'img/catalog/potato_pancakes.jpeg',
 			id: 2,
-			price: 70,
-			choices: ['Черный', 'Зеленый'],
+			price: 200,
 		},
 		{
-			name: 'Лукошко Фри',
-			img: 'img/catalog/french-fries.png',
+			name: 'Куриные крылья',
+			img: 'img/catalog/chicken_wings.jpeg',
 			id: 3,
-			price: 75,
+			price: 320,
 		},
 		{
-			name: 'Нагиевцы',
-			img: 'img/catalog/nuggets.png',
+			name: 'Картофель Фри',
+			img: 'img/catalog/french_fries.jpeg',
 			id: 4,
-			price: 100,
-			choices: ['Филе', 'Крылья'],
+			price: 180,
 		},
 		{
-			name: 'Кофе',
-			img: 'img/catalog/coffee.png',
+			name: 'Сок Rich Яблоко, 1 л',
+			img: 'img/catalog/rich_apple_juice.jpeg',
 			id: 5,
-			price: 150,
-			choices: ['Эспрессо', 'Капучино'],
+			price: 140,
 		},
 		{
-			name: 'Гринч',
-			img: 'img/catalog/green-coffee.png',
+			name: 'BonAqua, негаз. 0.5 л',
+			img: 'img/catalog/bonaqua.jpg',
 			id: 6,
-			price: 175.25
+			price: 55
+		},
+		{
+			name: 'Coca-Cola, 0.5 л',
+			img: 'img/catalog/coca_cola.jpg',
+			id: 7,
+			price: 90
+		},
+		{
+			name: 'Coca-Cola Vanilla, 0.5 л',
+			img: 'img/catalog/coca_cola_vanilla.jpeg',
+			id: 8,
+			price: 90
+		},
+		{
+			name: 'Sprite, 0.5 л',
+			img: 'img/catalog/sprite.jpg',
+			id: 9,
+			price: 90
+		},
+		{
+			name: 'Fanta, 0.5 л',
+			img: 'img/catalog/fanta.jpg',
+			id: 10,
+			price: 90
 		},
 	]
 };
