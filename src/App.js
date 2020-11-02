@@ -2,14 +2,14 @@ import React from 'react';
 
 import './css/fonts.css';
 
-import GlobalStyle from './components/styled/GlobalStyle';
+import GlobalStyle from './components/Styled/GlobalStyle';
 import Header from './components/Header';
 import Catalog from './components/Catalog';
 import Cart from './components/Cart';
-import Modal from './components/Catalog/Modal';
+import Modal from './components/Modal';
 
-import useSelectedItem from './components/hooks/useSelectedItem';
-import useCart from './components/hooks/useCart';
+import useSelectedItem from './components/Hooks/useSelectedItem';
+import useCart from './components/Hooks/useCart';
 
 const App = () => {
   const selectedItem = useSelectedItem();
