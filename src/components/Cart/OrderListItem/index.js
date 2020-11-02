@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { formatPrice, getTotalPrice } from '../../utils';
+
 import deleteIcon from '../../../img/delete.svg';
 import deleteIconActive from '../../../img/delete_active.svg';
 
@@ -70,11 +72,10 @@ const OrderListItem = ({ order }) => (
   <StyledOrderListItem>
     <Wrapper>
       {order.name}
-      <Number>1 шт</Number>
+      <Number>{order.quantity} шт</Number>
     </Wrapper>
     <Price>
-      {order.price
-        .toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}
+      {formatPrice(getTotalPrice(order))}
     </Price>
     <RemoveButton />
   </StyledOrderListItem>
