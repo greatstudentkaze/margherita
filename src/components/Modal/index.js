@@ -3,8 +3,10 @@ import styled, { css } from 'styled-components';
 
 import Button from '../Button';
 import ItemQuantity from './ItemQuantity';
+import ItemToppings from './ItemToppings';
 
 import useQuantity from '../Hooks/useQuantity';
+import useToppings from '../Hooks/useToppings';
 import { getTotalPrice, formatPrice } from '../utils';
 
 const Overlay = styled.div`
@@ -123,8 +125,9 @@ const Price = styled.p`
 
 const Modal = ({ selectedItem, setSelectedItem, orders, setOrders }) => {
   const quantityCounter = useQuantity();
+  const toppingItems = useToppings(selectedItem);
   const { name, img, category } = selectedItem;
-  const order = {...selectedItem, quantity: quantityCounter.quantity};
+  const order = {...selectedItem, quantity: quantityCounter.quantity, toppings: toppingItems.toppings};
 
   const hideOverlay = overlay => {
     overlay.style.animationName = 'hide';
@@ -153,6 +156,7 @@ const Modal = ({ selectedItem, setSelectedItem, orders, setOrders }) => {
         <Content>
           <h2>{name}</h2>
           <ItemQuantity {...quantityCounter}  />
+          {selectedItem.toppings && <ItemToppings {...toppingItems} />}
           <Price>
             Стоимость: <span>{formatPrice(getTotalPrice(order))}</span>
           </Price>
