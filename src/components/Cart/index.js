@@ -58,6 +58,8 @@ const Content = styled.div`
   line-height: 28px;
 
   background-color: #ffffff;
+  
+  overflow-y: auto;
 `;
 
 const OrderList = styled.ul`
