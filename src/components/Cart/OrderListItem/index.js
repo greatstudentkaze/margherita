@@ -34,22 +34,34 @@ const Number = styled.span`
 `;
 
 const Toppings = styled.span`
+  position: relative;
+
   display: inline-block;
   max-width: 160px;
-  margin-top: 10px;
+  margin-top: 30px;
   padding: 10px;
-  padding-right: 20px;
+  padding-right: 15px;
 
   font-size: 16px;
   line-height: 18px; 
   color: #ffffff;
-  text-align: center;
   
   background-color: #fa9e39;
   border-radius: 6px;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
-  opacity: 0.9;
+  
+  &::before {
+    content: "Добавлено:";
+    
+    position: absolute;
+    top: -20px;
+    left: 0;
+    
+    line-height: 16px;
+    color: #333333;
+    opacity: 0.8;
+  }
 `;
 
 const Price = styled.b`
