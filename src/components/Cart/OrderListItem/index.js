@@ -33,6 +33,25 @@ const Number = styled.span`
   opacity: 0.5;
 `;
 
+const Toppings = styled.span`
+  display: inline-block;
+  max-width: 160px;
+  margin-top: 10px;
+  padding: 10px;
+  padding-right: 20px;
+
+  font-size: 16px;
+  line-height: 18px; 
+  color: #ffffff;
+  text-align: center;
+  
+  background-color: #fa9e39;
+  border-radius: 6px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  opacity: 0.9;
+`;
+
 const Price = styled.b`
   margin-left: auto;
   margin-right: 5px;
@@ -64,17 +83,26 @@ const RemoveButton = styled.button`
   }
 `;
 
-const OrderListItem = ({ order }) => (
-  <StyledOrderListItem>
-    <Wrapper>
-      {order.name}
-      <Number>{order.quantity} шт</Number>
-    </Wrapper>
-    <Price>
-      {formatPrice(getTotalPrice(order))}
-    </Price>
-    <RemoveButton />
-  </StyledOrderListItem>
-);
+const OrderListItem = ({ order }) => {
+  const toppings = order.toppings &&
+    order.toppings
+      .filter(topping => topping.selected)
+      .map(topping => topping.name)
+      .join(', ');
+
+  return (
+    <StyledOrderListItem>
+      <Wrapper>
+        {order.name}
+        <Number>{order.quantity} шт</Number>
+        {toppings && <Toppings>{toppings}</Toppings>}
+      </Wrapper>
+      <Price>
+        {formatPrice(getTotalPrice(order))}
+      </Price>
+      <RemoveButton />
+    </StyledOrderListItem>
+  );
+};
 
 export default OrderListItem;
