@@ -55,6 +55,7 @@ const database = {
 			img: 'img/catalog/lunchbox_with_bbq_wings.jpeg',
 			id: 1,
 			price: 290,
+			choices: ['картофель фри', 'картофель по-деревенски', 'без соуса барбекю']
 		},
 		{
 			name: 'Картофельные оладьи, 8 шт',
@@ -79,36 +80,42 @@ const database = {
 			img: 'img/catalog/rich_apple_juice.jpeg',
 			id: 5,
 			price: 140,
+			choices: ['в графине', 'в пакете']
 		},
 		{
-			name: 'BonAqua, негаз. 0.5 л',
+			name: 'BonAqua, 0.5 л',
 			img: 'img/catalog/bonaqua.jpg',
 			id: 6,
-			price: 55
+			price: 55,
+			choices: ['негазированная', 'газированная']
 		},
 		{
 			name: 'Coca-Cola, 0.5 л',
 			img: 'img/catalog/coca_cola.jpg',
 			id: 7,
-			price: 90
+			price: 90,
+			choices: ['в стакане', 'в бутылке']
 		},
 		{
 			name: 'Coca-Cola Vanilla, 0.5 л',
 			img: 'img/catalog/coca_cola_vanilla.jpeg',
 			id: 8,
-			price: 90
+			price: 90,
+			choices: ['в стакане', 'в бутылке']
 		},
 		{
 			name: 'Sprite, 0.5 л',
 			img: 'img/catalog/sprite.jpg',
 			id: 9,
-			price: 90
+			price: 90,
+			choices: ['в стакане', 'в бутылке']
 		},
 		{
 			name: 'Fanta, 0.5 л',
 			img: 'img/catalog/fanta.jpg',
 			id: 10,
-			price: 90
+			price: 90,
+			choices: ['в стакане', 'в бутылке']
 		},
 	]
 };
