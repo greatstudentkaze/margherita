@@ -105,7 +105,7 @@ const OrderListItem = ({ order }) => {
   return (
     <StyledOrderListItem>
       <Wrapper>
-        {order.name}
+        {order.name} ({order.choice})
         <Number>{order.quantity} шт</Number>
         {toppings && <Toppings>{toppings}</Toppings>}
       </Wrapper>
