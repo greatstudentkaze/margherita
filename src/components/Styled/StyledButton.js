@@ -31,6 +31,13 @@ const StyledButton = styled.button`
   &:active {
     opacity: 0.4;
   }
+  
+  &:disabled {
+    background-color: #efefef;
+    border-color: #e1e1e1;
+    color: #888888;
+    cursor: not-allowed;
+  }
 
   @media (max-width: 767px) {
     padding: 0 50px;
