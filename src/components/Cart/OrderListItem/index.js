@@ -95,24 +95,28 @@ const RemoveButton = styled.button`
   }
 `;
 
-const OrderListItem = ({ order }) => {
+const OrderListItem = ({ order, orders, setOrders }) => {
   const toppings = order.toppings &&
     order.toppings
       .filter(topping => topping.selected)
       .map(topping => topping.name)
       .join(', ');
 
+  const handleClick = () => {
+    setOrders(orders.filter(item => item !== order));
+  };
+
   return (
     <StyledOrderListItem>
       <Wrapper>
-        {order.name} ({order.choice})
+        {order.name} {order.choices && `(${order.choice})`}
         <Number>{order.quantity} шт</Number>
         {toppings && <Toppings>{toppings}</Toppings>}
       </Wrapper>
       <Price>
         {formatPrice(getTotalPrice(order))}
       </Price>
-      <RemoveButton />
+      <RemoveButton onClick={handleClick} />
     </StyledOrderListItem>
   );
 };
