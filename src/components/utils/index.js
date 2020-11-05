@@ -1,5 +1,6 @@
 export const getTotalPrice = order => {
-  const toppingsCount = order.toppings && order.toppings.filter(topping => topping.selected).length;
+  const toppingsCount = order.selectedToppings &&
+    order.selectedToppings.filter(topping => topping.selected).length;
   const toppingPrice = 0.1;
   const toppingsPrices = (order.price * toppingPrice) * toppingsCount;
 
