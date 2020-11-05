@@ -95,16 +95,12 @@ const RemoveButton = styled.button`
   }
 `;
 
-const OrderListItem = ({ order, orders, setOrders }) => {
+const OrderListItem = ({ order, removeItem, index }) => {
   const toppings = order.toppings &&
     order.toppings
       .filter(topping => topping.selected)
       .map(topping => topping.name)
       .join(', ');
-
-  const handleClick = () => {
-    setOrders(orders.filter(item => item !== order));
-  };
 
   return (
     <StyledOrderListItem>
@@ -116,7 +112,7 @@ const OrderListItem = ({ order, orders, setOrders }) => {
       <Price>
         {formatPrice(getTotalPrice(order))}
       </Price>
-      <RemoveButton onClick={handleClick} />
+      <RemoveButton onClick={() => removeItem(index)} />
     </StyledOrderListItem>
   );
 };

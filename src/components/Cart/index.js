@@ -96,6 +96,10 @@ const Cart = ({ orders, setOrders }) => {
   const totalPrice = orders.reduce((totalPrice, order) =>
     totalPrice + getTotalPrice(order), 0);
 
+  const removeItem = index => {
+    setOrders(orders.filter((order, i) => i !== index));
+  };
+
   return (
     <StyledCart>
       <h2>Корзина</h2>
@@ -103,7 +107,8 @@ const Cart = ({ orders, setOrders }) => {
           {
             orders.length ?
             <OrderList>
-              {orders.map(order => <OrderListItem key={order.id} order={order} orders={orders} setOrders={setOrders} />)}
+              {orders.map((order, i) =>
+                <OrderListItem key={i} order={order} removeItem={removeItem} index={i} />)}
             </OrderList>
             : <EmptyList>Корзина пока пуста</EmptyList>
           }
