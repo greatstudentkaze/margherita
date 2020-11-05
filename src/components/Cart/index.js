@@ -92,7 +92,7 @@ const EmptyList = styled.p`
   text-align: center;
 `;
 
-const Cart = ({ orders, setOrders }) => {
+const Cart = ({ orders, setOrders, setSelectedItem }) => {
   const totalPrice = orders.reduce((totalPrice, order) =>
     totalPrice + getTotalPrice(order), 0);
 
@@ -108,7 +108,13 @@ const Cart = ({ orders, setOrders }) => {
             orders.length ?
             <OrderList>
               {orders.map((order, i) =>
-                <OrderListItem key={i} order={order} removeItem={removeItem} index={i} />)}
+                <OrderListItem
+                  key={i}
+                  order={order}
+                  removeItem={removeItem}
+                  index={i}
+                  setSelectedItem={setSelectedItem}
+                />)}
             </OrderList>
             : <EmptyList>Корзина пока пуста</EmptyList>
           }
