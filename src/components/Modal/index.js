@@ -133,9 +133,11 @@ const Modal = ({ selectedItem, setSelectedItem, orders, setOrders }) => {
   const order = {
     ...selectedItem,
     quantity: quantityCounter.quantity,
-    toppings: toppingsState.toppings,
+    selectedToppings: toppingsState.toppings,
     choice: choiceState.choice
   };
+
+  const isEdit = selectedItem.index > -1;
 
   const hideOverlay = overlay => {
     overlay.style.animationName = 'hide';
@@ -155,6 +157,12 @@ const Modal = ({ selectedItem, setSelectedItem, orders, setOrders }) => {
     hideOverlay(overlay);
   };
 
+  const editOrder = () => {
+    const newOrders = [...orders];
+    newOrders[selectedItem.index] = order;
+    setOrders(newOrders);
+  };
+
   return (
     <Overlay id="overlay" onClick={closeModal}>
       <ModalBlock>
@@ -169,7 +177,7 @@ const Modal = ({ selectedItem, setSelectedItem, orders, setOrders }) => {
           <Price>
             Стоимость: <span>{formatPrice(getTotalPrice(order))}</span>
           </Price>
-          <Button handleClick={addToCart} disabled={order.choices && !order.choice} text="Добавить в корзину" type="button" />
+          <Button handleClick={isEdit ? editOrder : addToCart} disabled={order.choices && !order.choice} text="Добавить в корзину" type="button" />
         </Content>
       </ModalBlock>
     </Overlay>
