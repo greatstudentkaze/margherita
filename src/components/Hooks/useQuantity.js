@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-const useQuantity = () => {
-  const [quantity, setQuantity] = useState(1);
+const useQuantity = selectedItem => {
+  const [quantity, setQuantity] = useState(selectedItem.quantity ?? 1);
 
   const handleChange = evt => setQuantity(evt.target.value);
 
