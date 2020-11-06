@@ -8,7 +8,7 @@ const StyledBanner = styled.section`
   min-height: 300px;
   padding: 50px 30px;
   
-  background-image: url("img/banner/megameat.jpg");
+  background-image: url("img/intro/megameat.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
