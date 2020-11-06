@@ -1,4 +1,6 @@
 import React from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 import './css/fonts.css';
 
@@ -10,15 +12,29 @@ import Modal from './components/Modal';
 
 import useSelectedItem from './components/Hooks/useSelectedItem';
 import useCart from './components/Hooks/useCart';
+import useAuth from './components/Hooks/useAuth';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAYPzDlAeBGqoMgcqgpQu0Lup6GcJcEo_o",
+  authDomain: "reactive-margherita.firebaseapp.com",
+  databaseURL: "https://reactive-margherita.firebaseio.com",
+  projectId: "reactive-margherita",
+  storageBucket: "reactive-margherita.appspot.com",
+  messagingSenderId: "375899325643",
+  appId: "1:375899325643:web:a7523cb195eb2e0c8dc74e"
+};
+
+firebase.initializeApp(firebaseConfig);
 
 const App = () => {
+  const auth = useAuth(firebase.auth);
   const selectedItem = useSelectedItem();
   const cart = useCart();
 
   return (
     <>
       <GlobalStyle />
-      <Header />
+      <Header {...auth} />
       <Cart {...cart} {...selectedItem} />
       <Catalog {...selectedItem} />
       {selectedItem.selectedItem && <Modal {...selectedItem} {...cart} />}
