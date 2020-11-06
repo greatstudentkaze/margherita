@@ -95,15 +95,21 @@ const RemoveButton = styled.button`
   }
 `;
 
-const OrderListItem = ({ order, removeItem, index }) => {
-  const toppings = order.toppings &&
-    order.toppings
+const OrderListItem = ({ order, removeItem, index, setSelectedItem }) => {
+  const toppings = order.selectedToppings &&
+    order.selectedToppings
       .filter(topping => topping.selected)
       .map(topping => topping.name)
       .join(', ');
 
+  const editItem = evt => {
+    const button = evt.target.closest('button');
+
+    if (!button) setSelectedItem({ ...order, index });
+  };
+
   return (
-    <StyledOrderListItem>
+    <StyledOrderListItem onClick={editItem}>
       <Wrapper>
         {order.name} {order.choices && `(${order.choice})`}
         <Number>{order.quantity} шт</Number>
