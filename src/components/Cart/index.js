@@ -92,7 +92,7 @@ const EmptyList = styled.p`
   text-align: center;
 `;
 
-const Cart = ({ orders, setOrders, setSelectedItem }) => {
+const Cart = ({ orders, setOrders, setSelectedItem, auth, login }) => {
   const totalPrice = orders.reduce((totalPrice, order) =>
     totalPrice + getTotalPrice(order), 0);
 
@@ -120,7 +120,7 @@ const Cart = ({ orders, setOrders, setSelectedItem }) => {
           }
         <CartTotal>
           <p>Сумма заказа: <b>{formatPrice(totalPrice)}</b></p>
-          <Button type="button" text="Оформить заказ" />
+          <Button type="button" text="Оформить заказ" onClick={() => auth ? console.log(orders) : login()} />
         </CartTotal>
       </Content>
     </StyledCart>
