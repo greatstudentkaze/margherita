@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 import { formatPrice, getTotalPrice } from '../../utils';
@@ -102,10 +102,12 @@ const OrderListItem = ({ order, removeItem, index, setSelectedItem }) => {
       .map(topping => topping.name)
       .join(', ');
 
-  const editItem = evt => {
-    const button = evt.target.closest('button');
+  const refRemoveButton = useRef(null);
 
-    if (!button) setSelectedItem({ ...order, index });
+  const editItem = evt => {
+    if (evt.target !== refRemoveButton.current) {
+      setSelectedItem({ ...order, index });
+    }
   };
 
   return (
@@ -118,7 +120,7 @@ const OrderListItem = ({ order, removeItem, index, setSelectedItem }) => {
       <Price>
         {formatPrice(getTotalPrice(order))}
       </Price>
-      <RemoveButton onClick={() => removeItem(index)} />
+      <RemoveButton ref={refRemoveButton} onClick={() => removeItem(index)} />
     </StyledOrderListItem>
   );
 };
