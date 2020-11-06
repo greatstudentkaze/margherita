@@ -14,6 +14,8 @@ const StyledOrderListItem = styled.li`
  
   border-top: 1px solid #e7e7e7;
   
+  cursor: pointer;
+  
   &:last-child {
     border-bottom: 1px solid #e7e7e7;
   }
