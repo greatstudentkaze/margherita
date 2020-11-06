@@ -126,7 +126,7 @@ const Price = styled.p`
 `;
 
 const Modal = ({ selectedItem, setSelectedItem, orders, setOrders }) => {
-  const quantityCounter = useQuantity();
+  const quantityCounter = useQuantity(selectedItem);
   const toppingsState = useToppings(selectedItem);
   const choiceState = useChoice(selectedItem);
   const { name, img, category } = selectedItem;
@@ -157,10 +157,13 @@ const Modal = ({ selectedItem, setSelectedItem, orders, setOrders }) => {
     hideOverlay(overlay);
   };
 
-  const editOrder = () => {
+  const editOrder = evt => {
     const newOrders = [...orders];
     newOrders[selectedItem.index] = order;
     setOrders(newOrders);
+
+    const overlay = evt.target.closest('#overlay');
+    hideOverlay(overlay);
   };
 
   return (
@@ -177,7 +180,11 @@ const Modal = ({ selectedItem, setSelectedItem, orders, setOrders }) => {
           <Price>
             Стоимость: <span>{formatPrice(getTotalPrice(order))}</span>
           </Price>
-          <Button handleClick={isEdit ? editOrder : addToCart} disabled={order.choices && !order.choice} text="Добавить в корзину" type="button" />
+          <Button
+            handleClick={isEdit ? editOrder : addToCart}
+            disabled={order.choices && !order.choice}
+            text={isEdit ? "Редактировать" : "Добавить в корзину"}
+            type="button" />
         </Content>
       </ModalBlock>
     </Overlay>
