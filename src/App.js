@@ -35,7 +35,7 @@ const App = () => {
     <>
       <GlobalStyle />
       <Header {...auth} />
-      <Cart {...cart} {...selectedItem} />
+      <Cart {...cart} {...selectedItem} {...auth} />
       <Catalog {...selectedItem} />
       {selectedItem.selectedItem && <Modal {...selectedItem} {...cart} />}
     </>
