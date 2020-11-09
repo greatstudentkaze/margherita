@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import OrderListItem from './OrderListItem';
 import Button from '../Button';
 
-import { getTotalPrice, formatPrice } from '../utils';
+import { getTotalPrice, formatPrice, projection } from '../utils';
 
 const StyledCart = styled.section`
   position: fixed;
@@ -92,7 +92,37 @@ const EmptyList = styled.p`
   text-align: center;
 `;
 
-const Cart = ({ orders, setOrders, setSelectedItem, auth, login }) => {
+const rulesData = {
+  name: ['name'],
+  price: ['price'],
+  quantity: ['quantity'],
+  toppings: [
+    'selectedToppings',
+      toppings => toppings
+        .filter(topping => topping.selected)
+        .map(topping => topping.name),
+    toppings => toppings.length ? toppings : 'no toppings'
+  ],
+  choice: ['choice', item => item ? item : 'no choice'],
+};
+
+const Cart = ({ orders, setOrders, setSelectedItem, auth, login, firebaseDatabase }) => {
+
+  const database = firebaseDatabase();
+
+  const sendOrders = () => {
+    const formattedOrders = orders.map(projection(rulesData));
+
+    database
+      .ref('orders')
+      .push()
+      .set({
+        clientName: auth.displayName,
+        email: auth.email,
+        order: formattedOrders
+      });
+  };
+
   const totalPrice = orders.reduce((totalPrice, order) =>
     totalPrice + getTotalPrice(order), 0);
 
@@ -120,7 +150,7 @@ const Cart = ({ orders, setOrders, setSelectedItem, auth, login }) => {
           }
         <CartTotal>
           <p>Сумма заказа: <b>{formatPrice(totalPrice)}</b></p>
-          <Button type="button" text="Оформить заказ" onClick={() => auth ? console.log(orders) : login()} />
+          <Button type="button" text="Оформить заказ" onClick={() => auth ? sendOrders() : login()} />
         </CartTotal>
       </Content>
     </StyledCart>
