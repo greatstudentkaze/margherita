@@ -150,7 +150,18 @@ const Cart = ({ orders, setOrders, setSelectedItem, auth, login, firebaseDatabas
           }
         <CartTotal>
           <p>Сумма заказа: <b>{formatPrice(totalPrice)}</b></p>
-          <Button type="button" text="Оформить заказ" onClick={() => auth ? sendOrders() : login()} />
+          <Button
+            type="button"
+            text="Оформить заказ"
+            onClick={() => {
+              if (auth) {
+                sendOrders();
+                setOrders([]);
+              } else {
+                login();
+              }
+            }}
+          />
         </CartTotal>
       </Content>
     </StyledCart>
