@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/database';
 
 import './css/fonts.css';
 
@@ -35,7 +36,7 @@ const App = () => {
     <>
       <GlobalStyle />
       <Header {...auth} />
-      <Cart {...cart} {...selectedItem} {...auth} />
+      <Cart {...cart} {...selectedItem} {...auth} firebaseDatabase={firebase.database} />
       <Catalog {...selectedItem} />
       {selectedItem.selectedItem && <Modal {...selectedItem} {...cart} />}
     </>
