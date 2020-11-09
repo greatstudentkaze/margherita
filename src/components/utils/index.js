@@ -8,3 +8,12 @@ export const getTotalPrice = order => {
 }
 
 export const formatPrice = price => price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'});
+
+export const projection = rules => {
+  const keys = Object.keys(rules);
+
+  return object => keys.reduce((newObject, key) => {
+    newObject[key] = rules[key].reduce((value, fn, i) => (i ? fn(value) : object[fn]), null);
+    return newObject;
+  }, {});
+};
