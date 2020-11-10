@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Banner from './Banner';
 import CatalogList from './CatalogList';
+import StyledPreloader from '../Styled/StyledPreloader';
 
 import useFetch from '../Hooks/useFetch';
 
@@ -57,7 +58,7 @@ const Catalog = ({ setSelectedItem }) => {
         </>
         : error ?
           <div>Возникла ошибка, извините, мы скоро все исправим!</div>
-          : <div>Загрузка</div>
+          : <StyledPreloader />
       }
     </StyledCatalog>
   );
