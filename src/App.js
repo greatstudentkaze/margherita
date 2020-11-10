@@ -32,7 +32,7 @@ const App = () => {
   const auth = useAuth(firebase.auth);
   const selectedItem = useSelectedItem();
   const cart = useCart();
-  useTitle(selectedItem);
+  useTitle(selectedItem.selectedItem);
 
   return (
     <>
