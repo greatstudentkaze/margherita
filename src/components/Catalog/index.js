@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Banner from './Banner';
 import CatalogList from './CatalogList';
 
-import database from './database';
+import useFetch from '../Hooks/useFetch';
 
 const StyledCatalog = styled.main`
   padding-top: 80px;
@@ -30,26 +30,37 @@ const SectionTitle = styled.h2`
   color: #333333;  
 `;
 
-const Catalog = ({ setSelectedItem }) => (
-  <StyledCatalog className="container">
-    <Banner />
+const Catalog = ({ setSelectedItem }) => {
+  const { data, error } = useFetch();
 
-    <section>
-      <SectionTitle>Пиццы</SectionTitle>
-      <CatalogList
-        catalog={database.pizzas}
-        setSelectedItem={setSelectedItem}
-      />
-    </section>
+  return (
+    <StyledCatalog className="container">
+      <Banner />
+      {
+        data ?
+        <>
+          <section>
+            <SectionTitle>Пиццы</SectionTitle>
+            <CatalogList
+              catalog={data.pizzas}
+              setSelectedItem={setSelectedItem}
+            />
+          </section>
 
-    <section>
-      <SectionTitle>Закуски и напитки</SectionTitle>
-      <CatalogList
-        catalog={database.other}
-        setSelectedItem={setSelectedItem}
-      />
-    </section>
-  </StyledCatalog>
-);
+          <section>
+            <SectionTitle>Закуски и напитки</SectionTitle>
+            <CatalogList
+              catalog={data.other}
+              setSelectedItem={setSelectedItem}
+            />
+          </section>
+        </>
+        : error ?
+          <div>Возникла ошибка, извините, мы скоро все исправим!</div>
+          : <div>Загрузка</div>
+      }
+    </StyledCatalog>
+  );
+};
 
 export default Catalog;
