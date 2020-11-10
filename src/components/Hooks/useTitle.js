@@ -6,7 +6,7 @@ const useTitle =  selectedItem => {
       ? `Пицца - ${selectedItem.name}` : selectedItem.name
     : 'Margherita: осторожно вкусная пицца!';
 
-  useEffect(() => document.title = title);
+  useEffect(() => document.title = title, [selectedItem, title]);
 };
 
 export default useTitle;
