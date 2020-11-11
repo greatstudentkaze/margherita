@@ -15,6 +15,7 @@ import useSelectedItem from './components/Hooks/useSelectedItem';
 import useCart from './components/Hooks/useCart';
 import useAuth from './components/Hooks/useAuth';
 import useTitle from './components/Hooks/useTitle';
+import useDatabase from './components/Hooks/useDatabase';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAYPzDlAeBGqoMgcqgpQu0Lup6GcJcEo_o",
@@ -32,14 +33,16 @@ const App = () => {
   const auth = useAuth(firebase.auth);
   const selectedItem = useSelectedItem();
   const cart = useCart();
+  const firebaseDatabase = firebase.database();
+  const catalogDatabase = useDatabase(firebaseDatabase);
   useTitle(selectedItem.selectedItem);
 
   return (
     <>
       <GlobalStyle />
       <Header {...auth} />
-      <Cart {...cart} {...selectedItem} {...auth} firebaseDatabase={firebase.database} />
-      <Catalog {...selectedItem} />
+      <Cart {...cart} {...selectedItem} {...auth} database={firebaseDatabase} />
+      <Catalog {...selectedItem} database={catalogDatabase}  />
       {selectedItem.selectedItem && <Modal {...selectedItem} {...cart} />}
     </>
   );

@@ -106,9 +106,7 @@ const rulesData = {
   choice: ['choice', item => item ? item : 'no choice'],
 };
 
-const Cart = ({ orders, setOrders, setSelectedItem, auth, login, firebaseDatabase }) => {
-
-  const database = firebaseDatabase();
+const Cart = ({ orders, setOrders, setSelectedItem, auth, login, database }) => {
 
   const sendOrders = () => {
     const formattedOrders = orders.map(projection(rulesData));

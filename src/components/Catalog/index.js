@@ -5,8 +5,6 @@ import Banner from './Banner';
 import CatalogList from './CatalogList';
 import StyledPreloader from '../Styled/StyledPreloader';
 
-import useFetch from '../Hooks/useFetch';
-
 const StyledCatalog = styled.main`
   padding-top: 80px;
   padding-bottom: 80px;
@@ -31,19 +29,16 @@ const SectionTitle = styled.h2`
   color: #333333;  
 `;
 
-const Catalog = ({ setSelectedItem }) => {
-  const { data, error } = useFetch();
-
-  return (
-    <StyledCatalog className="container">
-      <Banner />
-      {
-        data ?
+const Catalog = ({ setSelectedItem, database }) => (
+  <StyledCatalog className="container">
+    <Banner />
+    {
+      database ?
         <>
           <section>
             <SectionTitle>Пиццы</SectionTitle>
             <CatalogList
-              catalog={data.pizzas}
+              catalog={database.pizzas}
               setSelectedItem={setSelectedItem}
             />
           </section>
@@ -51,17 +46,14 @@ const Catalog = ({ setSelectedItem }) => {
           <section>
             <SectionTitle>Закуски и напитки</SectionTitle>
             <CatalogList
-              catalog={data.other}
+              catalog={database.other}
               setSelectedItem={setSelectedItem}
             />
           </section>
         </>
-        : error ?
-          <div>Возникла ошибка, извините, мы скоро все исправим!</div>
-          : <StyledPreloader />
-      }
-    </StyledCatalog>
-  );
-};
+        : <StyledPreloader />
+    }
+  </StyledCatalog>
+);
 
 export default Catalog;
