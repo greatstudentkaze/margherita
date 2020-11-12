@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+
+import Context from '../utils/context';
 
 import Banner from './Banner';
 import CatalogList from './CatalogList';
@@ -29,31 +31,35 @@ const SectionTitle = styled.h2`
   color: #333333;  
 `;
 
-const Catalog = ({ setSelectedItem, database }) => (
-  <StyledCatalog className="container">
-    <Banner />
-    {
-      database ?
-        <>
-          <section>
-            <SectionTitle>Пиццы</SectionTitle>
-            <CatalogList
-              catalog={database.pizzas}
-              setSelectedItem={setSelectedItem}
-            />
-          </section>
+const Catalog = () => {
+  const {catalogDatabase: database, selectedItem: { setSelectedItem }} = useContext(Context);
 
-          <section>
-            <SectionTitle>Закуски и напитки</SectionTitle>
-            <CatalogList
-              catalog={database.other}
-              setSelectedItem={setSelectedItem}
-            />
-          </section>
-        </>
-        : <StyledPreloader />
-    }
-  </StyledCatalog>
-);
+  return (
+    <StyledCatalog className="container">
+      <Banner />
+      {
+        database ?
+          <>
+            <section>
+              <SectionTitle>Пиццы</SectionTitle>
+              <CatalogList
+                catalog={database.pizzas}
+                setSelectedItem={setSelectedItem}
+              />
+            </section>
+
+            <section>
+              <SectionTitle>Закуски и напитки</SectionTitle>
+              <CatalogList
+                catalog={database.other}
+                setSelectedItem={setSelectedItem}
+              />
+            </section>
+          </>
+          : <StyledPreloader />
+      }
+    </StyledCatalog>
+  );
+};
 
 export default Catalog;

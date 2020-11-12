@@ -18,6 +18,7 @@ import useAuth from './components/Hooks/useAuth';
 import useTitle from './components/Hooks/useTitle';
 import useDatabase from './components/Hooks/useDatabase';
 import useOrderConfirm from './components/Hooks/useOrderConfirm';
+import Context from './components/utils/context';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAYPzDlAeBGqoMgcqgpQu0Lup6GcJcEo_o",
@@ -41,19 +42,14 @@ const App = () => {
   useTitle(selectedItem.selectedItem);
 
   return (
-    <>
+    <Context.Provider value={{ auth, cart, catalogDatabase, firebaseDatabase, orderConfirm, selectedItem }}>
       <GlobalStyle />
-      <Header {...auth} />
-      <Cart {...cart} {...selectedItem} {...auth} {...orderConfirm} />
-      <Catalog {...selectedItem} database={catalogDatabase}  />
-      {selectedItem.selectedItem && <Modal {...selectedItem} {...cart} />}
-      {orderConfirm.isOrderConfirmOpened &&
-      <OrderConfirm
-        {...cart}
-        {...auth}
-        {...orderConfirm}
-        database={firebaseDatabase} />}
-    </>
+      <Header />
+      <Cart />
+      <Catalog />
+      {selectedItem.selectedItem && <Modal />}
+      {orderConfirm.isOrderConfirmOpened && <OrderConfirm />}
+    </Context.Provider>
   );
 }
 

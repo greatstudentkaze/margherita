@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
+
+import Context from '../utils/context';
 
 import Button from '../Button';
 import ItemQuantity from './ItemQuantity';
@@ -91,7 +93,9 @@ const Price = styled.p`
   }
 `;
 
-const Modal = ({ selectedItem, setSelectedItem, orders, setOrders }) => {
+const Modal = () => {
+  const { selectedItem: { selectedItem, setSelectedItem }, cart: { orders, setOrders } } = useContext(Context);
+
   const quantityCounter = useQuantity(selectedItem);
   const toppingsState = useToppings(selectedItem);
   const choiceState = useChoice(selectedItem);

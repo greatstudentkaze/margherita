@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+
+import Context from '../utils/context';
 
 import OrderListItem from './OrderListItem';
 import Button from '../Button';
@@ -92,7 +94,13 @@ const EmptyList = styled.p`
   text-align: center;
 `;
 
-const Cart = ({ orders, setOrders, setSelectedItem, auth, login, setIsOrderConfirmOpened }) => {
+const Cart = () => {
+  const {
+    cart: { orders, setOrders },
+    selectedItem: { setSelectedItem },
+    auth: { auth, login },
+    orderConfirm: { setIsOrderConfirmOpened }
+  } = useContext(Context);
 
   const totalPrice = orders.reduce((totalPrice, order) =>
     totalPrice + getTotalPrice(order), 0);

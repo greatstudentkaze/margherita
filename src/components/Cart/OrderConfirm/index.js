@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+
+import Context from '../../utils/context';
 
 import Button from '../../Button';
 import { Overlay } from '../../Modal/Styled';
@@ -48,7 +50,14 @@ const sendOrders = (database, orders, auth) => {
     });
 };
 
-const OrderConfirm = ({ orders, setOrders, auth, database, setIsOrderConfirmOpened }) => {
+const OrderConfirm = () => {
+  const {
+    firebaseDatabase: database,
+    cart: { orders, setOrders },
+    auth: { auth },
+    orderConfirm: { setIsOrderConfirmOpened }
+  } = useContext(Context);
+
   const totalPrice = orders.reduce((totalPrice, order) =>
     totalPrice + getTotalPrice(order), 0);
 
