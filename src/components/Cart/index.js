@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import OrderListItem from './OrderListItem';
 import Button from '../Button';
 
-import { getTotalPrice, formatPrice, projection } from '../utils';
+import { getTotalPrice, formatPrice } from '../utils';
 
 const StyledCart = styled.section`
   position: fixed;
@@ -68,7 +68,7 @@ const OrderList = styled.ul`
   list-style-type: none;
 `;
 
-const CartTotal = styled.div`
+export const CartTotal = styled.div`
   margin-top: auto;
   padding: 15px 0;
   
@@ -92,34 +92,7 @@ const EmptyList = styled.p`
   text-align: center;
 `;
 
-const rulesData = {
-  name: ['name'],
-  price: ['price'],
-  quantity: ['quantity'],
-  toppings: [
-    'selectedToppings',
-      toppings => toppings
-        .filter(topping => topping.selected)
-        .map(topping => topping.name),
-    toppings => toppings.length ? toppings : 'no toppings'
-  ],
-  choice: ['choice', item => item ? item : 'no choice'],
-};
-
-const Cart = ({ orders, setOrders, setSelectedItem, auth, login, database }) => {
-
-  const sendOrders = () => {
-    const formattedOrders = orders.map(projection(rulesData));
-
-    database
-      .ref('orders')
-      .push()
-      .set({
-        clientName: auth.displayName,
-        email: auth.email,
-        order: formattedOrders
-      });
-  };
+const Cart = ({ orders, setOrders, setSelectedItem, auth, login, setIsOrderConfirmOpened }) => {
 
   const totalPrice = orders.reduce((totalPrice, order) =>
     totalPrice + getTotalPrice(order), 0);
@@ -153,8 +126,7 @@ const Cart = ({ orders, setOrders, setSelectedItem, auth, login, database }) => 
             text="Оформить заказ"
             onClick={() => {
               if (auth) {
-                sendOrders();
-                setOrders([]);
+                setIsOrderConfirmOpened(true);
               } else {
                 login();
               }
