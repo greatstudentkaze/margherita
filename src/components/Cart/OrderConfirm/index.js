@@ -70,7 +70,7 @@ const OrderConfirm = () => {
           <p>Сумма заказа: <b>{formatPrice(totalPrice)}</b></p>
           <Button
             type="button"
-            text="Оформить заказ"
+            text="Подтвердить"
             onClick={() => {
               sendOrders(database, orders, auth);
               setOrders([]);
