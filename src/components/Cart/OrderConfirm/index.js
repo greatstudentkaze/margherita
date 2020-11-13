@@ -5,7 +5,7 @@ import Context from '../../utils/context';
 
 import Button from '../../Button';
 import { Overlay } from '../../Modal/Styled';
-import { CartTotal } from '../index';
+import { CartTotal } from '../Styled';
 
 import { getTotalPrice, formatPrice, projection } from '../../utils';
 
