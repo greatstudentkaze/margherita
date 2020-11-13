@@ -127,20 +127,21 @@ const Cart = () => {
             </OrderList>
             : <EmptyList>Корзина пока пуста</EmptyList>
           }
-        <CartTotal>
-          <p>Сумма заказа: <b>{formatPrice(totalPrice)}</b></p>
-          <Button
-            type="button"
-            text="Оформить заказ"
-            onClick={() => {
-              if (auth) {
-                setIsOrderConfirmOpened(true);
-              } else {
-                login();
-              }
-            }}
-          />
-        </CartTotal>
+        {orders.length > 0
+          && <CartTotal>
+            <p>Сумма заказа: <b>{formatPrice(totalPrice)}</b></p>
+            <Button
+              type="button"
+              text="Оформить заказ"
+              onClick={() => {
+                if (auth) {
+                  setIsOrderConfirmOpened(true);
+                } else {
+                  login();
+                }
+              }}
+            />
+          </CartTotal>}
       </Content>
     </StyledCart>
   );
