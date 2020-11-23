@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+
+import ItemContext from '../ItemContext';
 
 const StyledToppings = styled.div`
 
@@ -21,7 +23,9 @@ const ToppingCheckbox = styled.input`
   cursor: pointer;
 `;
 
-const ItemToppings = ({ toppings, toggleTopping }) => {
+const ItemToppings = () => {
+  const { toppingsState: { toppings, toggleTopping } } = useContext(ItemContext);
+
   return (
     <StyledToppings>
       <p>Добавить в пиццу</p>

@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from "styled-components";
+
+import ItemContext from '../ItemContext';
 
 const StyledChoices = styled.div`
 
@@ -21,7 +23,9 @@ const ChoiceRadio = styled.input`
   cursor: pointer;
 `;
 
-const ItemChoices = ({ selectedItem, choice, changeChoice }) => {
+const ItemChoices = () => {
+  const { choiceState: { choice, changeChoice }, selectedItem } = useContext(ItemContext);
+
   return (
     <StyledChoices>
       <p>Выберите:</p>

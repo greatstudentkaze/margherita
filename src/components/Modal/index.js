@@ -11,6 +11,7 @@ import useQuantity from '../Hooks/useQuantity';
 import useToppings from '../Hooks/useToppings';
 import useChoice from '../Hooks/useChoice';
 import { getTotalPrice, formatPrice } from '../utils';
+import ItemContext from './ItemContext';
 
 import { Overlay, ModalBlock, Image, Content, Price } from './Styled';
 
@@ -65,9 +66,11 @@ const Modal = () => {
         </Image>
         <Content>
           <h2>{name}</h2>
-          <ItemQuantity {...quantityCounter}  />
-          {selectedItem.toppings && <ItemToppings {...toppingsState} />}
-          {selectedItem.choices && <ItemChoices {...choiceState} selectedItem={selectedItem} />}
+          <ItemContext.Provider value={{ quantityCounter, toppingsState, choiceState, selectedItem }}>
+            <ItemQuantity />
+            {selectedItem.toppings && <ItemToppings />}
+            {selectedItem.choices && <ItemChoices />}
+          </ItemContext.Provider>
           <Price>
             Стоимость: <span>{formatPrice(getTotalPrice(order))}</span>
           </Price>

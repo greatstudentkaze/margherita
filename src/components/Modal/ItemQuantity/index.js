@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+
+import ItemContext from '../ItemContext';
 
 const Quantity = styled.div`
   display: flex;
@@ -70,7 +72,8 @@ const QuantityButton = styled.button`
   }
 `;
 
-const ItemQuantity = ({ quantity, setQuantity, handleChange }) => {
+const ItemQuantity = () => {
+  const { quantityCounter: { quantity, setQuantity, handleChange } } = useContext(ItemContext);
 
   return (
     <Quantity>
