@@ -11,6 +11,7 @@ import Catalog from './components/Catalog';
 import Cart from './components/Cart';
 import Modal from './components/Modal';
 import OrderConfirm from './components/Cart/OrderConfirm';
+import OrderThank from './components/Cart/OrderThank';
 
 import useSelectedItem from './components/Hooks/useSelectedItem';
 import useCart from './components/Hooks/useCart';
@@ -18,6 +19,7 @@ import useAuth from './components/Hooks/useAuth';
 import useTitle from './components/Hooks/useTitle';
 import useDatabase from './components/Hooks/useDatabase';
 import useOrderConfirm from './components/Hooks/useOrderConfirm';
+import useOrderThank from './components/Hooks/useOrderThank';
 import Context from './components/utils/context';
 
 const firebaseConfig = {
@@ -37,18 +39,20 @@ const App = () => {
   const selectedItem = useSelectedItem();
   const cart = useCart();
   const orderConfirm = useOrderConfirm();
+  const orderThank = useOrderThank();
   const firebaseDatabase = firebase.database();
   const catalogDatabase = useDatabase(firebaseDatabase);
   useTitle(selectedItem.selectedItem);
 
   return (
-    <Context.Provider value={{ auth, cart, catalogDatabase, firebaseDatabase, orderConfirm, selectedItem }}>
+    <Context.Provider value={{ auth, cart, catalogDatabase, firebaseDatabase, orderConfirm, orderThank, selectedItem }}>
       <GlobalStyle />
       <Header />
       <Cart />
       <Catalog />
       {selectedItem.selectedItem && <Modal />}
       {orderConfirm.isOrderConfirmOpened && <OrderConfirm />}
+      {orderThank.isOrderThankOpened && <OrderThank />}
     </Context.Provider>
   );
 }

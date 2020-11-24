@@ -55,7 +55,8 @@ const OrderConfirm = () => {
     firebaseDatabase: database,
     cart: { orders, setOrders },
     auth: { auth },
-    orderConfirm: { setIsOrderConfirmOpened }
+    orderConfirm: { setIsOrderConfirmOpened },
+    orderThank: { openOrderThank }
   } = useContext(Context);
 
   const totalPrice = orders.reduce((totalPrice, order) =>
@@ -75,6 +76,7 @@ const OrderConfirm = () => {
               sendOrders(database, orders, auth);
               setOrders([]);
               setIsOrderConfirmOpened(false);
+              setTimeout(openOrderThank, 200);
             }}
           />
         </CartTotal>
