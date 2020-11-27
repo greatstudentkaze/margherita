@@ -7,6 +7,7 @@ const Quantity = styled.div`
   display: flex;
   justify-content: space-between;
   align-item: center;
+  margin-bottom: 20px;
   
   font-size: 20px;
   line-height: 40px;
