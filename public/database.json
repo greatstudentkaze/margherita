@@ -71,6 +71,30 @@
         "острый халапеньо",
         "чеддер и пармезан"
       ]
+    },
+    {
+      "name": "Маргарита",
+      "img": "img/catalog/margherita.jpeg",
+      "id": 7,
+      "category": "pizza",
+      "price": 350,
+      "toppings": [
+        "острая чоризо",
+        "острый халапеньо",
+        "брынза (фета)"
+      ]
+    },
+    {
+      "name": "Ветчина и сыр",
+      "img": "img/catalog/ham_and_cheese.jpg",
+      "id": 8,
+      "category": "pizza",
+      "price": 300,
+      "toppings": [
+        "чеддер и пармезан",
+        "цыпленок",
+        "грибы"
+      ]
     }
   ],
   "other": [
