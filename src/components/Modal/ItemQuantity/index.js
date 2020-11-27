@@ -15,6 +15,7 @@ const Quantity = styled.div`
 `;
 
 const QuantityInput = styled.input`
+  max-width: 49px;
   padding: 0 10px;
   
   font: inherit;
