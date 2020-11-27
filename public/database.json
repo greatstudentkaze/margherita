@@ -5,7 +5,7 @@
       "img": "img/catalog/cheese.jpg",
       "id": 1,
       "category": "pizza",
-      "price": 249,
+      "price": 250,
       "toppings": [
         "бекон",
         "цыпленок",
@@ -17,7 +17,7 @@
       "img": "img/catalog/cheese_chicken.jpg",
       "id": 2,
       "category": "pizza",
-      "price": 389,
+      "price": 390,
       "toppings": [
         "сыр моцарелла",
         "острый халапеньо",
@@ -29,7 +29,7 @@
       "img": "img/catalog/pepperoni.jpg",
       "id": 3,
       "category": "pizza",
-      "price": 399,
+      "price": 390,
       "toppings": [
         "острый халапеньо",
         "сыр блю чиз",
@@ -41,7 +41,7 @@
       "img": "img/catalog/carbonara.jpeg",
       "id": 4,
       "category": "pizza",
-      "price": 449,
+      "price": 450,
       "toppings": [
         "острый халапеньо",
         "бекон",
@@ -53,7 +53,7 @@
       "img": "img/catalog/four_cheeses.jpg",
       "id": 5,
       "category": "pizza",
-      "price": 429,
+      "price": 430,
       "toppings": [
         "ветчина",
         "цыпленок",
@@ -65,7 +65,7 @@
       "img": "img/catalog/bbq_chicken.jpg",
       "id": 6,
       "category": "pizza",
-      "price": 499,
+      "price": 490,
       "toppings": [
         "сыр моцарелла",
         "острый халапеньо",
