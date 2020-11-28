@@ -6,6 +6,7 @@ const StyledBanner = styled.section`
   
   display: flex;
   min-height: 300px;
+  margin-bottom: 100px;
   padding: 50px 30px;
   
   background-image: url("img/intro/megameat.jpg");

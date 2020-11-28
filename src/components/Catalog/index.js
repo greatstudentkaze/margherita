@@ -12,13 +12,13 @@ const StyledCatalog = styled.main`
   padding-bottom: 80px;
 
   background-color: #ffffff;
-  
-  section {
-    margin-bottom: 80px;
+`;
+
+const Section = styled.section`
+  margin-bottom: 80px;
     
-    &:last-of-type {
-      margin-bottom: 0;
-    }
+  &:last-of-type {
+    margin-bottom: 0;
   }
 `;
 
@@ -40,21 +40,21 @@ const Catalog = () => {
       {
         database ?
           <>
-            <section>
+            <Section>
               <SectionTitle>Пиццы</SectionTitle>
               <CatalogList
                 catalog={database.pizzas}
                 setSelectedItem={setSelectedItem}
               />
-            </section>
+            </Section>
 
-            <section>
+            <Section>
               <SectionTitle>Закуски и напитки</SectionTitle>
               <CatalogList
                 catalog={database.other}
                 setSelectedItem={setSelectedItem}
               />
-            </section>
+            </Section>
           </>
           : <StyledPreloader />
       }
