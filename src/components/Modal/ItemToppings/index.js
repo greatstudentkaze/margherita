@@ -19,13 +19,13 @@ const ToppingsHeading = styled.p`
 const ToppingsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
 `;
 
 const ToppingLabel = styled.label`
   position: relative;
 
   display: block;
+  margin-bottom: 10px;
   margin-left: 40px;
   padding-top: 3px;
   padding-bottom: 3px;
@@ -39,6 +39,10 @@ const ToppingLabel = styled.label`
   
   &:hover {
     color: #333333bd;
+  }
+  
+  &:last-child {
+    margin-bottom: 0;
   }
 `;
 
