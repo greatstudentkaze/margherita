@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Button from '../../Button';
 import { formatPrice } from '../../utils';
 
+import { device } from '../../Styled/MediaQueries';
+
 const StyledCatalogItem = styled.article`
   position: relative;
   z-index: 2;
@@ -13,6 +15,11 @@ const StyledCatalogItem = styled.article`
   
   color: #333333;  
   background-color: #ffffff;
+  
+  @media (max-width: 699px) {
+    align-items: center;
+    padding-right: 15px;
+  }
   
   h3 {
     margin: 0;
@@ -28,6 +35,10 @@ const StyledCatalogItem = styled.article`
     justify-content: space-between;
     align-items: center;
     margin: 0;
+
+    @media (max-width: 699px) {
+      flex-direction: column;
+    }
   }
   
   b {
@@ -39,8 +50,9 @@ const StyledCatalogItem = styled.article`
     order: -1;  
     align-self: center;
     display: block;
-    width: 250px;
-    height: 250px;
+    max-width: 250px;
+    width: 100%;
+    height: auto;
     margin-bottom: 20px;
     
     object-fit: cover;
@@ -49,6 +61,10 @@ const StyledCatalogItem = styled.article`
     &:hover,
     &:focus {
       transform: translateY(3px);
+    }
+
+    @media (max-width: 699px) {
+      margin-right: -15px;
     }
   }
 `;

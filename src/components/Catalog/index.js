@@ -6,12 +6,17 @@ import Context from '../utils/context';
 import Banner from './Banner';
 import CatalogList from './CatalogList';
 import StyledPreloader from '../Styled/StyledPreloader';
+import { device } from '../Styled/MediaQueries';
 
 const StyledCatalog = styled.main`
   padding-top: 80px;
   padding-bottom: 80px;
 
   background-color: #ffffff;
+  
+  @media ${device.mobileL} {
+    padding-left: 85px;
+  }
 `;
 
 const Section = styled.section`
