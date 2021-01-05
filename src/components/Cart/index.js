@@ -5,7 +5,7 @@ import Context from '../utils/context';
 import OrderListItem from './OrderListItem';
 import Button from '../Button';
 
-import { getTotalPrice, formatPrice } from '../utils';
+import { getTotalPrice, formatPrice, generateKey } from '../utils';
 
 import { StyledCart, Content, OrderList, EmptyList, CartTotal } from './Styled';
 
@@ -33,7 +33,7 @@ const Cart = () => {
             <OrderList>
               {orders.map((order, i) =>
                 <OrderListItem
-                  key={i}
+                  key={generateKey(i)}
                   order={order}
                   removeItem={removeItem}
                   index={i}

@@ -17,3 +17,5 @@ export const projection = rules => {
     return newObject;
   }, {});
 };
+
+export const generateKey = id => `${id}_${new Date().getTime()}`;
