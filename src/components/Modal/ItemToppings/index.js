@@ -56,7 +56,7 @@ const ToppingInput = styled.input`
   }
   
   &:focus-visible + span {
-    box-shadow 0 0 0 2px #ffffff, 0 0 0 5px #cd3a13;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 5px #cd3a13;
   }
 `;
 
@@ -70,7 +70,7 @@ const ToppingCheckbox = styled.span`
   height: 30px;
   
   background-color: #fcfcfc;
-  border: 2px solid #fa9e39;
+  border: 3px solid #fa9e39;
   border-radius: 8px;
   
   cursor: pointer;
