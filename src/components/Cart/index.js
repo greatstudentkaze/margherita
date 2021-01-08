@@ -15,7 +15,7 @@ const Cart = () => {
     cartRef,
     selectedItem: { setSelectedItem },
     auth: { auth, login },
-    orderConfirm: { setIsOrderConfirmOpened }
+    orderConfirm
   } = useContext(Context);
 
   const totalPrice = orders.reduce((totalPrice, order) =>
@@ -51,7 +51,7 @@ const Cart = () => {
               text="Оформить заказ"
               onClick={() => {
                 if (auth) {
-                  setIsOrderConfirmOpened(true);
+                  orderConfirm.setIsOpened(true);
                 } else {
                   login();
                 }

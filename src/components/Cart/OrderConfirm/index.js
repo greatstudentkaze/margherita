@@ -55,15 +55,15 @@ const OrderConfirm = () => {
     firebaseDatabase: database,
     cart: { orders, setOrders },
     auth: { auth },
-    orderConfirm: { setIsOrderConfirmOpened },
-    orderThank: { openModal: openOrderThank }
+    orderConfirm,
+    orderThank
   } = useContext(Context);
 
   const totalPrice = orders.reduce((totalPrice, order) =>
     totalPrice + getTotalPrice(order), 0);
 
   return (
-    <Overlay>
+    <Overlay ref={orderConfirm.overlayRef} onClick={orderConfirm.closeModal}>
       <Modal>
         <h2>{auth.displayName}</h2>
         <SubTitle>Осталось только подтвердить заказ!</SubTitle>
@@ -75,8 +75,8 @@ const OrderConfirm = () => {
             onClick={() => {
               sendOrders(database, orders, auth);
               setOrders([]);
-              setIsOrderConfirmOpened(false);
-              setTimeout(openOrderThank, 200);
+              orderConfirm.setIsOpened(false);
+              setTimeout(orderThank.openModal, 200);
             }}
           />
         </CartTotal>

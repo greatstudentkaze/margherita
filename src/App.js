@@ -63,7 +63,7 @@ const App = () => {
       <Cart />
       <Catalog />
       {selectedItem.selectedItem && <Modal />}
-      {orderConfirm.isOrderConfirmOpened && <OrderConfirm />}
+      {orderConfirm.isOpened && <OrderConfirm />}
       {orderThank.isOpened && <OrderThank />}
     </Context.Provider>
   );
