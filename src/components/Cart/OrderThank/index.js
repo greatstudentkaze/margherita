@@ -71,7 +71,7 @@ const OrderThank = () => {
     <Overlay ref={orderThank.overlayRef} onClick={orderThank.closeModal}>
       <Modal>
         <Title>Спасибо за заказ!</Title>
-        <Info>Мы отправили информацию о заказе на {auth.email}</Info>
+        <Info>Мы отправили информацию о&nbsp;заказе на&nbsp;{auth.email}</Info>
       </Modal>
     </Overlay>
   );
