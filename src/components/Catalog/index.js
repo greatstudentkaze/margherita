@@ -42,27 +42,28 @@ const Catalog = () => {
   return (
     <StyledCatalog className="container">
       <Banner />
-      {
-        database ?
-          <>
-            <Section>
-              <SectionTitle>Пиццы</SectionTitle>
-              <CatalogList
-                catalog={database.pizzas}
-                setSelectedItem={setSelectedItem}
-              />
-            </Section>
-
-            <Section>
-              <SectionTitle>Закуски и напитки</SectionTitle>
-              <CatalogList
-                catalog={database.other}
-                setSelectedItem={setSelectedItem}
-              />
-            </Section>
-          </>
-          : <StyledPreloader />
-      }
+      <Section>
+        <SectionTitle>Пиццы</SectionTitle>
+        {
+          database && database.pizzas ?
+            <CatalogList
+              catalog={database.pizzas}
+              setSelectedItem={setSelectedItem}
+            />
+            : <StyledPreloader />
+        }
+      </Section>
+      <Section>
+        <SectionTitle>Закуски и напитки</SectionTitle>
+        {
+          database && database.other ?
+            <CatalogList
+              catalog={database.other}
+              setSelectedItem={setSelectedItem}
+            />
+            : <StyledPreloader />
+        }
+      </Section>
     </StyledCatalog>
   );
 };
