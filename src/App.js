@@ -55,7 +55,7 @@ const App = () => {
       <Catalog />
       {selectedItem.selectedItem && <Modal cartRef={cartRef} />}
       {orderConfirm.isOrderConfirmOpened && <OrderConfirm />}
-      {orderThank.isOrderThankOpened && <OrderThank />}
+      {orderThank.isOrderThankOpened && <OrderThank closeModal={orderThank.closeOrderThank} />}
     </Context.Provider>
   );
 }
