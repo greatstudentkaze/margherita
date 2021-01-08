@@ -11,16 +11,27 @@ import { getTotalPrice, formatPrice, projection } from '../../utils';
 
 const Modal = styled.div`
   width: 600px;
-  padding: 30px;
+  padding: 40px 25px;
+  
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
 
   background-color: #ffffff;
 `;
 
-const SubTitle = styled.h3`
+const Title = styled.h2`
   margin: 0;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   
-  text-align: center;
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: normal;
+`;
+
+const Emoji = styled.span`
+  display: inline-block;
+  margin-bottom: 30px;
 `;
 
 const rulesData = {
@@ -65,8 +76,11 @@ const OrderConfirm = () => {
   return (
     <Overlay ref={orderConfirm.overlayRef} onClick={orderConfirm.closeModal}>
       <Modal>
-        <h2>{auth.displayName}</h2>
-        <SubTitle>Осталось только подтвердить заказ!</SubTitle>
+        <Title>
+          <b>{auth.displayName},</b> <br/>
+          Вам осталось только подтвердить заказ!
+        </Title>
+        <Emoji>😋😋😋</Emoji>
         <CartTotal>
           <p>Сумма заказа: <b>{formatPrice(totalPrice)}</b></p>
           <Button
