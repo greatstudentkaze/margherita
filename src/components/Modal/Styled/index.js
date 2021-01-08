@@ -15,7 +15,7 @@ export const Overlay = styled.div`
   background-color: rgba(51, 51, 51, 0.5);
   
   animation-name: show;
-  animation-duration 0.3s;
+  animation-duration: 0.3s;
   
   @keyframes show {
     0% {
