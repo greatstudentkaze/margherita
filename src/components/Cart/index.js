@@ -12,6 +12,7 @@ import { StyledCart, Content, OrderList, EmptyList, CartTotal } from './Styled';
 const Cart = () => {
   const {
     cart: { orders, setOrders },
+    cartRef,
     selectedItem: { setSelectedItem },
     auth: { auth, login },
     orderConfirm: { setIsOrderConfirmOpened }
@@ -25,7 +26,7 @@ const Cart = () => {
   };
 
   return (
-    <StyledCart>
+    <StyledCart ref={cartRef} tabIndex="0">
       <h2>Корзина</h2>
       <Content>
           {

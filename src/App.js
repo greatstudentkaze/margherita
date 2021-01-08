@@ -43,14 +43,17 @@ const App = () => {
   const firebaseDatabase = firebase.database();
   const catalogDatabase = useDatabase(firebaseDatabase);
   useTitle(selectedItem.selectedItem);
+  const cartRef = React.useRef(null);
 
   return (
-    <Context.Provider value={{ auth, cart, catalogDatabase, firebaseDatabase, orderConfirm, orderThank, selectedItem }}>
+    <Context.Provider
+      value={{ auth, cart, cartRef, catalogDatabase, firebaseDatabase, orderConfirm, orderThank, selectedItem }}
+    >
       <GlobalStyle />
       <Header />
-      <Cart />
+      <Cart cartRef={cartRef} />
       <Catalog />
-      {selectedItem.selectedItem && <Modal />}
+      {selectedItem.selectedItem && <Modal cartRef={cartRef} />}
       {orderConfirm.isOrderConfirmOpened && <OrderConfirm />}
       {orderThank.isOrderThankOpened && <OrderThank />}
     </Context.Provider>

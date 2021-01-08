@@ -16,7 +16,7 @@ import ItemContext from './ItemContext';
 import { Overlay, ModalBlock, Image, Content, Price } from './Styled';
 
 const Modal = () => {
-  const { selectedItem: { selectedItem, setSelectedItem }, cart: { orders, setOrders } } = useContext(Context);
+  const { selectedItem: { selectedItem, setSelectedItem }, cart: { orders, setOrders }, cartRef } = useContext(Context);
 
   const quantityCounter = useQuantity(selectedItem);
   const toppingsState = useToppings(selectedItem);
@@ -36,6 +36,11 @@ const Modal = () => {
     setTimeout(() => setSelectedItem(null), 250);
   };
 
+  const focusCart = () => {
+    cartRef.current.focus();
+    setTimeout(() => cartRef.current.blur(), 2800);
+  };
+
   const closeModal = evt => {
     if (evt.target.id !== 'overlay') return;
 
@@ -47,6 +52,7 @@ const Modal = () => {
 
     const overlay = evt.target.closest('#overlay');
     hideOverlay(overlay);
+    focusCart();
   };
 
   const editOrder = evt => {
@@ -56,6 +62,7 @@ const Modal = () => {
 
     const overlay = evt.target.closest('#overlay');
     hideOverlay(overlay);
+    focusCart();
   };
 
   return (

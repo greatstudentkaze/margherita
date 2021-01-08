@@ -17,6 +17,7 @@ export const StyledCart = styled.section`
   
   background-color: #ef9f67;
   box-shadow: 3px 0 6px rgba(0, 0, 0, 0.25);
+  outline: none;
   
   transition: 0.3s ease-out;
   
