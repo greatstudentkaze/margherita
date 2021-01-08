@@ -56,7 +56,7 @@ const OrderConfirm = () => {
     cart: { orders, setOrders },
     auth: { auth },
     orderConfirm: { setIsOrderConfirmOpened },
-    orderThank: { openOrderThank }
+    orderThank: { openModal: openOrderThank }
   } = useContext(Context);
 
   const totalPrice = orders.reduce((totalPrice, order) =>

@@ -32,15 +32,14 @@ const Modal = styled.div`
     background-size: 60px;
 
     animation-name: ride;
-    animation-duration: 4.2s;
-    animation-delay: 0.7s;
+    animation-duration: 4.5s;
     animation-fill-mode: both;
     animation-timing-function: ease-in-out;
   }
   
   @keyframes ride {
     0% {
-      transform: translateX(0);
+      transform: translateX(90px);
     }
     
     100% {
@@ -65,11 +64,11 @@ const Info = styled.p`
   line-height: 24px;
 `;
 
-const OrderThank = ({ closeModal }) => {
-  const { auth: { auth } } = useContext(Context);
+const OrderThank = () => {
+  const { auth: { auth }, orderThank } = useContext(Context);
 
   return (
-    <Overlay className="overlay" onClick={closeModal}>
+    <Overlay ref={orderThank.overlayRef} onClick={orderThank.closeModal}>
       <Modal>
         <Title>Спасибо за заказ!</Title>
         <Info>Мы отправили информацию о заказе на {auth.email}</Info>

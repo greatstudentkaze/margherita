@@ -47,15 +47,24 @@ const App = () => {
 
   return (
     <Context.Provider
-      value={{ auth, cart, cartRef, catalogDatabase, firebaseDatabase, orderConfirm, orderThank, selectedItem }}
+      value={{
+          auth,
+          cart,
+          cartRef,
+          catalogDatabase,
+          firebaseDatabase,
+          orderConfirm,
+          orderThank,
+          selectedItem
+      }}
     >
       <GlobalStyle />
       <Header />
-      <Cart cartRef={cartRef} />
+      <Cart />
       <Catalog />
-      {selectedItem.selectedItem && <Modal cartRef={cartRef} />}
+      {selectedItem.selectedItem && <Modal />}
       {orderConfirm.isOrderConfirmOpened && <OrderConfirm />}
-      {orderThank.isOrderThankOpened && <OrderThank closeModal={orderThank.closeOrderThank} />}
+      {orderThank.isOpened && <OrderThank />}
     </Context.Provider>
   );
 }

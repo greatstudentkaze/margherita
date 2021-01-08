@@ -1,23 +1,28 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const useOrderThank = () => {
-  const [isOrderThankOpened, setIsOrderThankOpened] = useState(false);
+  const [isOpened, setIsOpened] = useState(false);
+  const overlayRef = useRef(null);
+  const timerId = useRef(0);
 
-  const openOrderThank = () => {
-    setIsOrderThankOpened(true);
-    setTimeout(() => setIsOrderThankOpened(false), 5000);
+  const hideOverlay = () => {
+    overlayRef.current.style.animationName = 'hide';
+    setTimeout(() => setIsOpened(false), 250);
+  }
+
+  const openModal = () => {
+    setIsOpened(true);
+    timerId.current = setTimeout(hideOverlay, 5000);
   };
 
-  const closeOrderThank = evt => {
-    if (!evt.target.classList.contains('overlay')) {
-      return;
+  const closeModal = evt => {
+    if (evt.target === overlayRef.current) {
+      hideOverlay();
+      clearTimeout(timerId.current);
     }
-
-    evt.target.style.animationName = 'hide';
-    setTimeout(() => setIsOrderThankOpened(false), 250);
   };
 
-  return { isOrderThankOpened, openOrderThank, closeOrderThank };
+  return { isOpened, openModal, closeModal, overlayRef };
 };
 
 export default useOrderThank;
