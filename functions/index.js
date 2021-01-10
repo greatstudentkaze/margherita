@@ -21,12 +21,13 @@ const sendOrderByEmail = data => {
     html: `
       <section>
         <h2>Спасибо, ${data.clientName}! Мы работаем над Вашим заказом.</h2>
+        <p>Заказ:</p>
         <ul>
           ${data.order.map(({ name, price, quantity }) => (
             `<li>${name} - ${quantity} шт., цена ${price * quantity} руб.</li>`
           )).join('')}    
         </ul>
-        <p>Итого: ${data.order.reduce((sum, item) => sum + item.price * item.quantity, 0)} руб.</p>
+        <p>Итого: ${data.totalPrice} руб.</p>
       </section>
     `
   };
