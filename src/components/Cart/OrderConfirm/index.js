@@ -48,7 +48,7 @@ const rulesData = {
   choice: ['choice', item => item ? item : 'no choice'],
 };
 
-const sendOrders = (database, orders, auth) => {
+const sendOrders = (database, orders, auth, totalPrice) => {
   const formattedOrders = orders.map(projection(rulesData));
 
   database
@@ -57,7 +57,8 @@ const sendOrders = (database, orders, auth) => {
     .set({
       clientName: auth.displayName,
       email: auth.email,
-      order: formattedOrders
+      order: formattedOrders,
+      totalPrice: totalPrice
     });
 };
 
@@ -70,6 +71,8 @@ const OrderConfirm = () => {
     orderThank
   } = useContext(Context);
 
+  const totalPrice = getTotalPrice(orders, getItemPrice);
+
   return (
     <Overlay ref={orderConfirm.overlayRef} onClick={orderConfirm.closeModal}>
       <Modal>
@@ -79,12 +82,12 @@ const OrderConfirm = () => {
         </Title>
         <Emoji>😋😋😋</Emoji>
         <CartTotal>
-          <p>Сумма заказа: <b>{formatPrice(getTotalPrice(orders, getItemPrice))}</b></p>
+          <p>Сумма заказа: <b>{formatPrice(totalPrice)}</b></p>
           <Button
             type="button"
             text="Подтвердить"
             onClick={() => {
-              sendOrders(database, orders, auth);
+              sendOrders(database, orders, auth, totalPrice);
               setOrders([]);
               orderConfirm.setIsOpened(false);
               setTimeout(orderThank.openModal, 200);
