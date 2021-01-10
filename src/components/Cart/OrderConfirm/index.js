@@ -7,7 +7,7 @@ import Button from '../../Button';
 import { Overlay } from '../../Modal/Styled';
 import { CartTotal } from '../Styled';
 
-import { getTotalPrice, formatPrice, projection } from '../../utils';
+import { getTotalPrice, getItemPrice, formatPrice, projection } from '../../utils';
 
 const Modal = styled.div`
   width: 600px;
@@ -70,9 +70,6 @@ const OrderConfirm = () => {
     orderThank
   } = useContext(Context);
 
-  const totalPrice = orders.reduce((totalPrice, order) =>
-    totalPrice + getTotalPrice(order), 0);
-
   return (
     <Overlay ref={orderConfirm.overlayRef} onClick={orderConfirm.closeModal}>
       <Modal>
@@ -82,7 +79,7 @@ const OrderConfirm = () => {
         </Title>
         <Emoji>😋😋😋</Emoji>
         <CartTotal>
-          <p>Сумма заказа: <b>{formatPrice(totalPrice)}</b></p>
+          <p>Сумма заказа: <b>{formatPrice(getTotalPrice(orders, getItemPrice))}</b></p>
           <Button
             type="button"
             text="Подтвердить"

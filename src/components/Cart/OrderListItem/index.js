@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 
-import { formatPrice, getTotalPrice } from '../../utils';
+import { formatPrice, getItemPrice } from '../../utils';
 
 const StyledOrderListItem = styled.li`
   display: flex;
@@ -120,7 +120,7 @@ const OrderListItem = ({ order, removeItem, index, setSelectedItem }) => {
         {toppings && <Toppings>{toppings}</Toppings>}
       </Wrapper>
       <Price>
-        {formatPrice(getTotalPrice(order))}
+        {formatPrice(getItemPrice(order))}
       </Price>
       <RemoveButton ref={refRemoveButton} onClick={() => removeItem(index)} />
     </StyledOrderListItem>

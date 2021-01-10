@@ -10,7 +10,7 @@ import ItemChoices from './ItemChoices';
 import useQuantity from '../Hooks/useQuantity';
 import useToppings from '../Hooks/useToppings';
 import useChoice from '../Hooks/useChoice';
-import { getTotalPrice, formatPrice } from '../utils';
+import { getItemPrice, formatPrice } from '../utils';
 import ItemContext from './ItemContext';
 
 import { Overlay, ModalBlock, Image, Content, Price } from './Styled';
@@ -79,7 +79,7 @@ const Modal = () => {
             {selectedItem.choices && <ItemChoices />}
           </ItemContext.Provider>
           <Price>
-            Стоимость: <span>{formatPrice(getTotalPrice(order))}</span>
+            Стоимость: <span>{formatPrice(getItemPrice(order))}</span>
           </Price>
           <Button
             handleClick={isEdit ? editOrder : addToCart}

@@ -1,11 +1,14 @@
-export const getTotalPrice = order => {
-  const toppingsCount = order.selectedToppings &&
-    order.selectedToppings.filter(topping => topping.selected).length;
+export const getItemPrice = item => {
+  const toppingsCount = item.selectedToppings &&
+    item.selectedToppings.filter(topping => topping.selected).length;
   const toppingPrice = 0.1;
-  const toppingsPrices = (order.price * toppingPrice) * toppingsCount;
+  const toppingsPrices = (item.price * toppingPrice) * toppingsCount;
 
-  return (order.price + toppingsPrices) * order.quantity;
-}
+  return (item.price + toppingsPrices) * item.quantity;
+};
+
+export const getTotalPrice = (items, getItemPrice) =>
+  items.reduce((totalPrice, order) => totalPrice + getItemPrice(order), 0);
 
 export const formatPrice = price => price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'});
 
