@@ -74,17 +74,26 @@ const GlobalStyle = createGlobalStyle`
     padding-left: 50px;
   }
   
+  @media (max-width: 1420px) {
+    .container {
+      position: relative;
+      right: -30px;
+    }
+  }
+  
   @media (max-width: 1399px) {
     .container {
-    padding-right: 30px;
-    padding-left: 30px;
+      padding-right: 30px;
+      padding-left: 30px;
     }
   }
   
   @media (max-width: 767px) {
     .container {
-    padding-right: 20px;
-    padding-left: 20px;
+      right: auto;
+      
+      padding-right: 20px;
+      padding-left: 80px;
     }
   }
   

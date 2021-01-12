@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 
 import Context from '../utils/context';
 
@@ -13,7 +13,7 @@ import useChoice from '../Hooks/useChoice';
 import { getItemPrice, formatPrice } from '../utils';
 import ItemContext from './ItemContext';
 
-import { Overlay, ModalBlock, Image, Content, Price } from './Styled';
+import { Overlay, ModalBlock, Image, Content, Price, CloseButton } from './Styled';
 
 const Modal = () => {
   const { selectedItem: { selectedItem, setSelectedItem }, cart: { orders, setOrders }, cartRef } = useContext(Context);
@@ -28,6 +28,7 @@ const Modal = () => {
     selectedToppings: toppingsState.toppings,
     choice: choiceState.choice
   };
+  const overlayRef = useRef(null);
 
   const isEdit = selectedItem.index > -1;
 
@@ -42,32 +43,33 @@ const Modal = () => {
   };
 
   const closeModal = evt => {
-    if (evt.target.id !== 'overlay') return;
+    if (evt.target !== overlayRef.current) return;
 
-    hideOverlay(evt.target);
+    hideOverlay(overlayRef.current);
   };
 
-  const addToCart = evt => {
+  const addToCart = () => {
     setOrders([...orders, order]);
 
-    const overlay = evt.target.closest('#overlay');
-    hideOverlay(overlay);
+    hideOverlay(overlayRef.current);
     focusCart();
   };
 
-  const editOrder = evt => {
+  const editOrder = () => {
     const newOrders = [...orders];
     newOrders[selectedItem.index] = order;
     setOrders(newOrders);
 
-    const overlay = evt.target.closest('#overlay');
-    hideOverlay(overlay);
+    hideOverlay(overlayRef.current);
     focusCart();
   };
 
   return (
-    <Overlay id="overlay" onClick={closeModal}>
+    <Overlay ref={overlayRef} onClick={closeModal}>
       <ModalBlock>
+        <CloseButton onClick={() => hideOverlay(overlayRef.current)} type="button" aria-label="Закрыть модальное окно" aria-hidden="true">
+          <span className="visually-hidden">Закрыть</span>
+        </CloseButton>
         <Image category={category}>
           <img src={img} alt={name}/>
         </Image>

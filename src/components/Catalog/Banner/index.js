@@ -14,6 +14,11 @@ const StyledBanner = styled.section`
   background-size: cover;
   background-position: center;
   border-radius: 25px;
+
+  @media (max-width: 450px) {
+    min-height: auto;
+    margin-bottom: 70px;
+  }
   
   &::before {
     content: "";
@@ -28,6 +33,10 @@ const StyledBanner = styled.section`
     background-color: #333333;
     border-radius: 25px;
     opacity: 0.4;
+
+    @media (max-width: 540px) {
+      opacity: 0.6;
+    }
   }
   
   h2 {
@@ -44,12 +53,33 @@ const StyledBanner = styled.section`
     font-weight: 500;
     color: #ffffff;
     text-align: right;
+
+    @media (max-width: 670px) {
+      font-size: 36px;
+      line-height: 48px;
+    }
+    
+    @media (max-width: 540px) {
+      margin-bottom: auto;
+      text-align: center;
+    }
+    
+    @media (max-width: 450px) {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+  
+  .hidden {
+    @media (max-width: 540px) {
+      display: none;
+    }
   }
 `;
 
 const Banner = () => (
   <StyledBanner>
-    <h2>Скоро у нас появится новая пицца - Мегамит!</h2>
+    <h2>Скоро у&nbsp;нас появится <span className="hidden">новая</span>&nbsp;пицца<span className="hidden"> -</span> Мегамит!</h2>
   </StyledBanner>
 );
 

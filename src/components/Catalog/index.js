@@ -17,6 +17,11 @@ const StyledCatalog = styled.main`
   @media ${device.mobileL} {
     padding-left: 85px;
   }
+  
+  @media (max-width: 540px) {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
 `;
 
 const Section = styled.section`
